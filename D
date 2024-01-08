@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unblock Content</title>
+</head>
+<body>
+    <h1>Unblock Content</h1>
+    <p>Paste the URL below to unblock content.</p>
+
+    <form id="unblockForm">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Unblock</button>
+    </form>
+
+    <script>
+        document.getElementById('unblockForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let url = document.getElementById('url').value;
+
+            // Make a POST request to the server with the URL as the request body.
+            // The server-side scripting code should be responsible for connecting to the URL,
+            // logging in, and establishing the required network connection to bypass the content restrictions.
+
+            fetch('/unblock', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Content unblocked!');
+                } else {
+                    alert('Failed to unblock content. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to unblock content. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
