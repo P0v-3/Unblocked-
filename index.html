@@ -1,47 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Unblock Content</title>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family: Arial, sans-serif;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    cursor:pointer;
+    transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+p{
+    color:#555;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#ff4e50;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ff2e33;
+}
+</style>
 </head>
+
 <body>
-    <h1>Unblock Content</h1>
-    <p>Paste the URL below to unblock content.</p>
 
-    <form id="unblockForm">
-        <label for="url">URL:</label>
-        <input type="text" id="url" name="url" required>
-        <button type="submit">Unblock</button>
-    </form>
+<div class="card" onclick="goNext()">
+    <h1>🎂 Happy Birthday!</h1>
+    <p>Click to open your surprise 🎁</p>
+    <button>Open</button>
+</div>
 
-    <script>
-        document.getElementById('unblockForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let url = document.getElementById('url').value;
+<script>
+function goNext(){
+    window.location.href = "hai.html";
+}
+</script>
 
-            // Make a POST request to the server with the URL as the request body.
-            // The server-side scripting code should be responsible for connecting to the URL,
-            // logging in, and establishing the required network connection to bypass the content restrictions.
-
-            fetch('/unblock', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ url: url })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Content unblocked!');
-                } else {
-                    alert('Failed to unblock content. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to unblock content. Please try again.');
-            });
-        });
-    </script>
 </body>
 </html>
